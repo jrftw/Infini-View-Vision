@@ -1,30 +1,18 @@
-//
-//  ImmersiveView.swift
-//  Infini View Vision
-//
-//  Created by Kevin Doyle Jr. on 12/7/24.
-//
-
+// ImmersiveView.swift
 import SwiftUI
 import RealityKit
-import RealityKitContent
+import os
 
 struct ImmersiveView: View {
-
+    let makeClosure: (RealityViewContent) async -> Void
+    
+    init(content: @escaping (RealityViewContent) async -> Void) {
+        self.makeClosure = content
+    }
+    
     var body: some View {
         RealityView { content in
-            // Add the initial RealityKit content
-            if let immersiveContentEntity = try? await Entity(named: "Immersive", in: realityKitContentBundle) {
-                content.add(immersiveContentEntity)
-
-                // Put skybox here.  See example in World project available at
-                // https://developer.apple.com/
-            }
+            await makeClosure(content)
         }
     }
-}
-
-#Preview(immersionStyle: .full) {
-    ImmersiveView()
-        .environment(AppModel())
 }

@@ -2,22 +2,29 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIApplicationSceneManifest</key>
-	<dict>
-		<key>UIApplicationPreferredDefaultSceneSessionRole</key>
-		<string>UIWindowSceneSessionRoleApplication</string>
-		<key>UIApplicationSupportsMultipleScenes</key>
-		<true/>
-		<key>UISceneConfigurations</key>
-		<dict>
-			<key>UISceneSessionRoleImmersiveSpaceApplication</key>
-			<array>
-				<dict>
-					<key>UISceneInitialImmersionStyle</key>
-					<string>UIImmersionStyleFull</string>
-				</dict>
-			</array>
-		</dict>
-	</dict>
+    <key>NSLocalNetworkUsageDescription</key>
+    <string>This app searches for and connects to devices on your Wi-Fi network.</string>
+    <key>NSBonjourServices</key>
+    <array>
+        <string>_myapp._tcp</string>
+    </array>
+
+    <key>UIApplicationSceneManifest</key>
+    <dict>
+        <key>UIApplicationPreferredDefaultSceneSessionRole</key>
+        <string>UIWindowSceneSessionRoleApplication</string>
+        <key>UIApplicationSupportsMultipleScenes</key>
+        <true/>
+        <key>UISceneConfigurations</key>
+        <dict>
+            <key>UISceneSessionRoleImmersiveSpaceApplication</key>
+            <array>
+                <dict>
+                    <key>UISceneInitialImmersionStyle</key>
+                    <string>UIImmersionStyleFull</string>
+                </dict>
+            </array>
+        </dict>
+    </dict>
 </dict>
 </plist>
