@@ -1,4 +1,5 @@
-// WorkspaceViewModel.swift
+//workspaceViewModel.swift - used for vision pro
+
 import Foundation
 import RealityKit
 import Combine
@@ -9,14 +10,14 @@ class WorkspaceViewModel: ObservableObject {
     @Published var screens: [Entity] = []
     @Published var focusedScreen: Entity?
     @Published var currentScale: CGFloat = 1.0
-    
+
     private let log = Logger(subsystem: "com.infini.view.vision", category: "WorkspaceViewModel")
     private var cancellables = Set<AnyCancellable>()
-    
+
     private let handTracking = HandTrackingManager()
     private let eyeTracking = EyeTrackingManager()
     private var currentDragOffset: CGSize = .zero
-    
+
     func setupScreens(in anchor: AnchorEntity, count: Int) {
         for i in 0..<count {
             let screen = createScreenEntity()
@@ -26,7 +27,7 @@ class WorkspaceViewModel: ObservableObject {
         }
         log.info("Screens setup completed for device.")
     }
-    
+
     private func createScreenEntity() -> ModelEntity {
         let mesh = MeshResource.generatePlane(width: 0.5, height: 0.3)
         let material = SimpleMaterial(color: .gray, roughness: 0.5, isMetallic: false)
@@ -34,7 +35,7 @@ class WorkspaceViewModel: ObservableObject {
         model.generateCollisionShapes(recursive: true)
         return model
     }
-    
+
     func startManagers() {
         eyeTracking.$currentGazeTarget
             .receive(on: RunLoop.main)
@@ -42,7 +43,7 @@ class WorkspaceViewModel: ObservableObject {
                 self?.focusedScreen = target
             }
             .store(in: &cancellables)
-        
+
         handTracking.$currentTransform
             .receive(on: RunLoop.main)
             .sink { [weak self] transform in
@@ -50,10 +51,10 @@ class WorkspaceViewModel: ObservableObject {
                 focused.transform = transform
             }
             .store(in: &cancellables)
-        
+
         log.info("Managers started.")
     }
-    
+
     func handleGazeRaycastHit(hitEntity: Entity?) {
         if let entity = hitEntity, screens.contains(entity) {
             eyeTracking.updateGazeTarget(entity: entity)
@@ -61,7 +62,7 @@ class WorkspaceViewModel: ObservableObject {
             eyeTracking.updateGazeTarget(entity: nil)
         }
     }
-    
+
     func handleFocusChange(target: Entity?) {
         for screen in screens {
             if let model = screen as? ModelEntity {
@@ -74,7 +75,7 @@ class WorkspaceViewModel: ObservableObject {
         }
         log.info("Focus changed.")
     }
-    
+
     func handleHandDragChange(translation: CGSize) {
         guard let focused = focusedScreen else { return }
         currentDragOffset = translation
@@ -85,12 +86,12 @@ class WorkspaceViewModel: ObservableObject {
         focused.transform = t
         log.info("Dragging focused screen.")
     }
-    
+
     func handleHandDragEnd() {
         currentDragOffset = .zero
         log.info("Drag ended.")
     }
-    
+
     func handleMagnificationChange(scale: CGFloat) {
         currentScale = scale
         guard let focused = focusedScreen else { return }
@@ -99,7 +100,7 @@ class WorkspaceViewModel: ObservableObject {
         focused.transform = t
         log.info("Magnifying focused screen.")
     }
-    
+
     func handleMagnificationEnd() {
         guard let focused = focusedScreen else { return }
         var t = focused.transform

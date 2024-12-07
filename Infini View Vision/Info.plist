@@ -2,6 +2,25 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <!-- Basic App Info -->
+    <key>CFBundleIdentifier</key>
+    <string>Infinitum-Imagery-LLC.Infini-View-Vision</string>
+    <key>CFBundleName</key>
+    <string>YourVisionApp</string>
+    <key>CFBundleShortVersionString</key>
+    <string>1.0</string>
+    <key>CFBundleVersion</key>
+    <string>6</string>
+    <key>CFBundleExecutable</key>
+    <string>$(EXECUTABLE_NAME)</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
+    <key>CFBundleDevelopmentRegion</key>
+    <string>en</string>
+
+    <!-- Local Network Permissions -->
     <key>NSLocalNetworkUsageDescription</key>
     <string>This app searches for and connects to devices on your Wi-Fi network.</string>
     <key>NSBonjourServices</key>
@@ -9,6 +28,7 @@
         <string>_myapp._tcp</string>
     </array>
 
+    <!-- Scene Manifest for visionOS Immersive Space -->
     <key>UIApplicationSceneManifest</key>
     <dict>
         <key>UIApplicationPreferredDefaultSceneSessionRole</key>
@@ -17,6 +37,7 @@
         <true/>
         <key>UISceneConfigurations</key>
         <dict>
+            <!-- visionOS immersive space configuration -->
             <key>UISceneSessionRoleImmersiveSpaceApplication</key>
             <array>
                 <dict>

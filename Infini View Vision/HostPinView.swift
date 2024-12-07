@@ -1,15 +1,9 @@
-//
-//  HostPinView.swift
-//  Infini View Vision
-//
-//  Created by Kevin Doyle Jr. on 12/7/24.
-//
-
-
+// HostPinView.swift used for vision pro
 import SwiftUI
 
 struct HostPinView: View {
     @EnvironmentObject var pinManager: PinManager
+    @EnvironmentObject var hostManager: HostManager
 
     var body: some View {
         VStack {
@@ -27,6 +21,16 @@ struct HostPinView: View {
                     .onAppear {
                         pinManager.generatePin()
                     }
+            }
+
+            if hostManager.isHosting {
+                if hostManager.isReady {
+                    Text("Service: \(hostManager.serviceName) is advertised.")
+                } else {
+                    Text("Starting host listener...")
+                }
+            } else {
+                Text("Not hosting yet...")
             }
 
             Spacer()

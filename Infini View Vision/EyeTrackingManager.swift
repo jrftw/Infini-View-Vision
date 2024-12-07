@@ -1,4 +1,4 @@
-// EyeTrackingManager.swift
+// EyeTrackingManager.swift used for vision pro
 import Foundation
 import RealityKit
 import Combine

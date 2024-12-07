@@ -1,17 +1,11 @@
-//
-//  StatusBarView.swift
-//  Infini View Vision
-//
-//  Created by Kevin Doyle Jr. on 12/7/24.
-//
-
-
 import SwiftUI
+import os
 
 struct StatusBarView: View {
     @State private var offset: CGSize = .zero
-    @State private var batteryLevel: Int = 85 // Placeholder battery level
+    @State private var batteryLevel: Int = 100
     @State private var dateTime: String = ""
+    private let log = Logger(subsystem: "com.infini.view.vision", category: "StatusBarView")
 
     var body: some View {
         HStack(spacing: 20) {
@@ -31,9 +25,14 @@ struct StatusBarView: View {
                     offset = gesture.translation
                 }
         )
-        .onAppear(perform: updateDateTime)
+        .onAppear {
+            enableBatteryMonitoring()
+            updateDateTime()
+            updateBatteryLevel()
+        }
         .onReceive(Timer.publish(every: 60, on: .main, in: .common).autoconnect()) { _ in
             updateDateTime()
+            updateBatteryLevel()
         }
     }
 
@@ -41,5 +40,19 @@ struct StatusBarView: View {
         let formatter = DateFormatter()
         formatter.dateFormat = "MM/dd/yyyy HH:mm"
         dateTime = formatter.string(from: Date())
+    }
+
+    private func enableBatteryMonitoring() {
+        UIDevice.current.isBatteryMonitoringEnabled = true
+    }
+
+    private func updateBatteryLevel() {
+        let level = UIDevice.current.batteryLevel
+        if level < 0.0 {
+            log.debug("Battery level unavailable.")
+            batteryLevel = 100
+        } else {
+            batteryLevel = Int(level * 100)
+        }
     }
 }

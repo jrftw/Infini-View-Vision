@@ -1,4 +1,4 @@
-// DeviceSelectionView.swift
+// DeviceSelectionView.swift used for vision pro
 import SwiftUI
 import Network
 
@@ -28,10 +28,10 @@ struct DeviceSelectionView: View {
                         .padding()
                 } else {
                     ForEach(discoveryManager.discoveredDevices, id: \.self) { result in
-                        Button(action: {
+                        Button {
                             selectedResult = result
                             showPinEntry = true
-                        }) {
+                        } label: {
                             Text(deviceName(for: result))
                                 .padding()
                                 .background(Color.blue.opacity(0.6))
@@ -42,9 +42,9 @@ struct DeviceSelectionView: View {
                 }
             }
 
-            Button(action: {
+            Button {
                 discoveryManager.startDiscovery(serviceType: "_myapp._tcp")
-            }) {
+            } label: {
                 Text("Refresh")
                     .padding()
                     .background(Color.blue.opacity(0.6))
@@ -68,10 +68,9 @@ struct DeviceSelectionView: View {
                     .keyboardType(.numberPad)
                     .padding()
 
-                Button(action: {
+                Button {
                     if pinManager.verifyPin(enteredPin) {
                         guard let result = selectedResult else { return }
-                        // Call directly on connectionManager, no `$` prefix
                         connectionManager.connectToDevice(result: result)
                         showPinEntry = false
                     } else {
@@ -79,7 +78,7 @@ struct DeviceSelectionView: View {
                         showPinEntry = false
                         showConnectingAlert = true
                     }
-                }) {
+                } label: {
                     Text("Connect")
                         .padding()
                         .background(Color.blue.opacity(0.6))
@@ -93,13 +92,13 @@ struct DeviceSelectionView: View {
         }
         .alert(isPresented: $showConnectingAlert) {
             if connectionManager.isConnecting {
-                Alert(title: Text("Connecting..."), message: Text("Attempting to connect..."), dismissButton: .default(Text("OK")))
-            } else if let error = connectionManager.connectionError {
-                Alert(title: Text("Connection Failed"), message: Text(error), dismissButton: .default(Text("OK")))
+                return Alert(title: Text("Connecting..."), message: Text("Attempting to connect..."), dismissButton: .default(Text("OK")))
+            } else if let err = connectionManager.connectionError {
+                return Alert(title: Text("Connection Failed"), message: Text(err), dismissButton: .default(Text("OK")))
             } else if connectionManager.isConnected {
-                Alert(title: Text("Connected"), message: Text("Successfully connected."), dismissButton: .default(Text("OK")))
+                return Alert(title: Text("Connected"), message: Text("Successfully connected."), dismissButton: .default(Text("OK")))
             } else {
-                Alert(title: Text("Unknown State"), message: Text("Unable to determine connection state"), dismissButton: .default(Text("OK")))
+                return Alert(title: Text("Unknown State"), message: Text("Unable to determine connection state"), dismissButton: .default(Text("OK")))
             }
         }
         .onChange(of: connectionManager.isConnecting) { _, newValue in

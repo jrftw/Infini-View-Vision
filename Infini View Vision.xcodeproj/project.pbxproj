@@ -14,6 +14,7 @@
 		79CDCBC42D0431EC000D34B6 /* Infini View Vision.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Infini View Vision.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		79CDCBC82D0431EC000D34B6 /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
 		79CDCBFF2D044621000D34B6 /* libswiftMetalKit.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libswiftMetalKit.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.1.sdk/usr/lib/swift/libswiftMetalKit.tbd; sourceTree = DEVELOPER_DIR; };
+		79CDCC0E2D044EAD000D34B6 /* Infini View Vision App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Infini View Vision App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -23,6 +24,13 @@
 				Info.plist,
 			);
 			target = 79CDCBC32D0431EC000D34B6 /* Infini View Vision */;
+		};
+		79CDCC332D044EAF000D34B6 /* Exceptions for "Infini View Vision App" folder in "Infini View Vision App" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 79CDCC0D2D044EAD000D34B6 /* Infini View Vision App */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -35,9 +43,12 @@
 			path = "Infini View Vision";
 			sourceTree = "<group>";
 		};
-		79CDCBE22D0431ED000D34B6 /* Infini View VisionTests */ = {
+		79CDCC0F2D044EAD000D34B6 /* Infini View Vision App */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Infini View VisionTests";
+			exceptions = (
+				79CDCC332D044EAF000D34B6 /* Exceptions for "Infini View Vision App" folder in "Infini View Vision App" target */,
+			);
+			path = "Infini View Vision App";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -51,6 +62,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		79CDCC0B2D044EAD000D34B6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -59,7 +77,7 @@
 			children = (
 				79CDCBC62D0431EC000D34B6 /* Infini View Vision */,
 				79CDCBC72D0431EC000D34B6 /* Packages */,
-				79CDCBE22D0431ED000D34B6 /* Infini View VisionTests */,
+				79CDCC0F2D044EAD000D34B6 /* Infini View Vision App */,
 				79CDCBFE2D044621000D34B6 /* Frameworks */,
 				79CDCBC52D0431EC000D34B6 /* Products */,
 			);
@@ -69,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				79CDCBC42D0431EC000D34B6 /* Infini View Vision.app */,
+				79CDCC0E2D044EAD000D34B6 /* Infini View Vision App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -115,6 +134,28 @@
 			productReference = 79CDCBC42D0431EC000D34B6 /* Infini View Vision.app */;
 			productType = "com.apple.product-type.application";
 		};
+		79CDCC0D2D044EAD000D34B6 /* Infini View Vision App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 79CDCC342D044EAF000D34B6 /* Build configuration list for PBXNativeTarget "Infini View Vision App" */;
+			buildPhases = (
+				79CDCC0A2D044EAD000D34B6 /* Sources */,
+				79CDCC0B2D044EAD000D34B6 /* Frameworks */,
+				79CDCC0C2D044EAD000D34B6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				79CDCC0F2D044EAD000D34B6 /* Infini View Vision App */,
+			);
+			name = "Infini View Vision App";
+			packageProductDependencies = (
+			);
+			productName = "Infini View Vision App";
+			productReference = 79CDCC0E2D044EAD000D34B6 /* Infini View Vision App.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -126,6 +167,9 @@
 				LastUpgradeCheck = 1610;
 				TargetAttributes = {
 					79CDCBC32D0431EC000D34B6 = {
+						CreatedOnToolsVersion = 16.1;
+					};
+					79CDCC0D2D044EAD000D34B6 = {
 						CreatedOnToolsVersion = 16.1;
 					};
 				};
@@ -145,12 +189,20 @@
 			projectRoot = "";
 			targets = (
 				79CDCBC32D0431EC000D34B6 /* Infini View Vision */,
+				79CDCC0D2D044EAD000D34B6 /* Infini View Vision App */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		79CDCBC22D0431EC000D34B6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		79CDCC0C2D044EAD000D34B6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -167,6 +219,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		79CDCC0A2D044EAD000D34B6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
@@ -176,7 +235,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"Infini View Vision/Preview Content\"";
 				DEVELOPMENT_TEAM = AD7SJSPX55;
 				ENABLE_PREVIEWS = YES;
@@ -207,7 +266,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"Infini View Vision/Preview Content\"";
 				DEVELOPMENT_TEAM = AD7SJSPX55;
 				ENABLE_PREVIEWS = YES;
@@ -351,6 +410,90 @@
 			};
 			name = Release;
 		};
+		79CDCC352D044EAF000D34B6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Infini View Vision App/Infini_View_Vision_App.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_ASSET_PATHS = "\"Infini View Vision App/Preview Content\"";
+				DEVELOPMENT_TEAM = AD7SJSPX55;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Infini View Vision App/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Infini View Vision";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 11.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Infinitum-Imagery-LLC.Infini-View-Vision-App";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				XROS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		79CDCC362D044EAF000D34B6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Infini View Vision App/Infini_View_Vision_App.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_ASSET_PATHS = "\"Infini View Vision App/Preview Content\"";
+				DEVELOPMENT_TEAM = AD7SJSPX55;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Infini View Vision App/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Infini View Vision";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 11.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Infinitum-Imagery-LLC.Infini-View-Vision-App";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				XROS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -368,6 +511,15 @@
 			buildConfigurations = (
 				79CDCBE72D0431ED000D34B6 /* Debug */,
 				79CDCBE82D0431ED000D34B6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		79CDCC342D044EAF000D34B6 /* Build configuration list for PBXNativeTarget "Infini View Vision App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				79CDCC352D044EAF000D34B6 /* Debug */,
+				79CDCC362D044EAF000D34B6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

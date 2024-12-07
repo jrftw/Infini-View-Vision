@@ -1,3 +1,4 @@
+// ConnectionManager.swift (Shared)
 import Foundation
 import Network
 import Combine
@@ -9,7 +10,7 @@ final class ConnectionManager: ObservableObject {
     @Published var connectionError: String?
 
     private let log = Logger(subsystem: "com.infini.view.vision", category: "ConnectionManager")
-    private var connection: NWConnection?
+    var connection: NWConnection?
 
     func connectToDevice(result: NWBrowser.Result, defaultPort: UInt16 = 12345) {
         guard !isConnecting && !isConnected else { return }
@@ -57,16 +58,6 @@ final class ConnectionManager: ObservableObject {
         newConnection.start(queue: .global())
     }
 
-    func disconnect() {
-        guard isConnected || isConnecting else { return }
-        log.info("Disconnecting.")
-        connection?.cancel()
-        connection = nil
-        isConnected = false
-        isConnecting = false
-        connectionError = nil
-    }
-
     func connectToHost(_ host: String, port: UInt16) {
         guard !isConnecting && !isConnected else { return }
         isConnecting = true
@@ -75,7 +66,12 @@ final class ConnectionManager: ObservableObject {
 
         log.info("Attempting direct connection to host: \(host), port: \(port)")
 
-        let nwPort = NWEndpoint.Port(rawValue: port) ?? NWEndpoint.Port(12345)
+        guard let nwPort = NWEndpoint.Port(rawValue: port) else {
+            isConnecting = false
+            connectionError = "Invalid port number."
+            return
+        }
+
         let nwHost = NWEndpoint.Host(host)
         let params = NWParameters.tcp
         let newConnection = NWConnection(host: nwHost, port: nwPort, using: params)
@@ -111,13 +107,38 @@ final class ConnectionManager: ObservableObject {
         newConnection.start(queue: .global())
     }
 
-    func sendCommand(_ command: String) {
+    func disconnect() {
+        guard isConnected || isConnecting else { return }
+        log.info("Disconnecting.")
+        connection?.cancel()
+        connection = nil
+        isConnected = false
+        isConnecting = false
+        connectionError = nil
+    }
+
+    func sendCommandMessage(_ data: Data) {
         guard isConnected, let connection = connection else { return }
-        let data = Data(command.utf8)
         connection.send(content: data, completion: .contentProcessed({ sendError in
             if let sendError = sendError {
                 self.log.error("Send failed: \(sendError.localizedDescription)")
             }
         }))
+    }
+
+    func startReceivingHostState(receiver: ClientStateReceiver) {
+        guard let connection = connection else { return }
+
+        connection.receive(minimumIncompleteLength: 1, maximumLength: 4096) { [weak self] data, _, isComplete, error in
+            if let data = data {
+                receiver.receiveData(data)
+            }
+            if isComplete || error != nil {
+                self?.log.info("Stopped receiving host state")
+                return
+            } else {
+                self?.startReceivingHostState(receiver: receiver)
+            }
+        }
     }
 }

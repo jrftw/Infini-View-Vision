@@ -1,10 +1,4 @@
-//
-//  PinManager.swift
-//  Infini View Vision
-//
-//  Created by Kevin Doyle Jr. on 12/7/24.
-//
-
+//PinManager.swift - used for vision pro
 
 import Foundation
 import os

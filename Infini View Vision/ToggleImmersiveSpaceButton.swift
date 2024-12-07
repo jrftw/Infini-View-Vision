@@ -1,11 +1,10 @@
-// ToggleImmersiveSpaceButton.swift
 import SwiftUI
 
 struct ToggleImmersiveSpaceButton: View {
     @EnvironmentObject var appModel: AppModel
     @Environment(\.dismissImmersiveSpace) private var dismissImmersiveSpace
     @Environment(\.openImmersiveSpace) private var openImmersiveSpace
-    
+
     var body: some View {
         Button {
             Task { @MainActor in

@@ -1,26 +1,26 @@
-// DeviceDiscoveryManager.swift
+// DeviceDiscoveryManager.swift used for visionpro
 import Foundation
 import Network
 import Combine
 import os
 
-class DeviceDiscoveryManager: ObservableObject {
+final class DeviceDiscoveryManager: ObservableObject {
     @Published var discoveredDevices: [NWBrowser.Result] = []
     @Published var isSearching: Bool = false
-    
+
     private let log = Logger(subsystem: "com.infini.view.vision", category: "DeviceDiscoveryManager")
     private var browser: NWBrowser?
-    
+
     func startDiscovery(serviceType: String = "_myapp._tcp") {
         guard !isSearching else { return }
         isSearching = true
         discoveredDevices.removeAll()
-        
+
         let parameters = NWParameters()
         parameters.includePeerToPeer = true
         let browser = NWBrowser(for: .bonjour(type: serviceType, domain: nil), using: parameters)
         self.browser = browser
-        
+
         browser.stateUpdateHandler = { [weak self] newState in
             guard let self = self else { return }
             switch newState {
@@ -35,7 +35,7 @@ class DeviceDiscoveryManager: ObservableObject {
                 break
             }
         }
-        
+
         browser.browseResultsChangedHandler = { [weak self] results, _ in
             guard let self = self else { return }
             DispatchQueue.main.async {
@@ -44,10 +44,10 @@ class DeviceDiscoveryManager: ObservableObject {
                 self.log.info("Device discovery updated with \(results.count) results.")
             }
         }
-        
+
         browser.start(queue: .global())
     }
-    
+
     func stopDiscovery() {
         browser?.cancel()
         browser = nil

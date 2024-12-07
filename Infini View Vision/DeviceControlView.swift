@@ -1,4 +1,5 @@
-// DeviceControlView.swift
+//DeviceControlView.swift - used for vision pro
+
 import SwiftUI
 import RealityKit
 import Combine
@@ -8,31 +9,30 @@ struct DeviceControlView: View {
     @EnvironmentObject var appModel: AppModel
     @EnvironmentObject var connectionManager: ConnectionManager
     @EnvironmentObject var viewModel: WorkspaceViewModel
-    
+
     var body: some View {
-        ZStack {
-            ImmersiveView(content: { content in
-                if content.entities.isEmpty, appModel.selectedDevice != nil, connectionManager.isConnected {
-                    let anchor = AnchorEntity(world: [0,0,-1.5])
-                    content.add(anchor)
-                    if let entity = try? await Entity(named: "Immersive", in: Bundle.main) {
-                        content.add(entity)
-                    }
-                    viewModel.setupScreens(in: anchor, count: 5)
+        ImmersiveView(content: { content in
+            if content.entities.isEmpty, appModel.selectedDevice != nil, connectionManager.isConnected {
+                let anchor = AnchorEntity(world: [0,0,-1.5])
+                content.add(anchor)
+                if let entity = try? await Entity(named: "Immersive", in: Bundle.main) {
+                    content.add(entity)
                 }
-            })
-            .ignoresSafeArea()
-            
+                viewModel.setupScreens(in: anchor, count: 5)
+            }
+        })
+        .ignoresSafeArea()
+        .overlay(
             VStack {
                 HStack {
-                    if let deviceType = appModel.selectedDevice {
-                        Text("Controlling: \(deviceType.rawValue)")
+                    if let device = appModel.selectedDevice {
+                        Text("Controlling: \(device.rawValue)")
                             .padding()
                             .background(Color.black.opacity(0.6))
                             .cornerRadius(8)
                             .foregroundColor(.white)
                     }
-                    
+
                     Button("Disconnect") {
                         connectionManager.disconnect()
                         appModel.selectedDevice = nil
@@ -41,13 +41,13 @@ struct DeviceControlView: View {
                     .background(Color.red.opacity(0.6))
                     .cornerRadius(8)
                     .foregroundColor(.white)
-                    
+
                     Spacer()
                 }
                 .padding()
                 Spacer()
             }
-        }
+        )
         .gesture(
             DragGesture(minimumDistance: 0)
                 .onChanged { gesture in
